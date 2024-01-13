@@ -1,0 +1,20 @@
+version: "3.7"
+services:
+  template-nginx:
+    image: nginx
+    container_name: template-nginx
+    restart: unless-stopped
+    ports:
+      - 8001:80
+      - 8002:443
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d:/etc/nginx/conf.d/
+    networks:
+      - baochauserver-network
+
+networks:
+  baochauserver-network:
+    name: baochauserver-network
+    driver: bridge
+    external: true
